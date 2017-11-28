@@ -3,7 +3,7 @@ module Test.Main where
 import Prelude
 import Control.Monad.Eff (Eff)
 
-import Node.Systemd.Journald (journald, debug, alert, SYSTEMD)
+import Node.Systemd.Journald (journald, debug, SYSTEMD)
 
 data Custom = Empty | NonEmpty Int
 
