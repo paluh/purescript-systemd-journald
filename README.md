@@ -19,7 +19,7 @@ Current API is probably too liberal - it will accept any record value as your cu
 
 ### Usage
 
-As stated above current API doesn't prevent you from passing any record to the logger, but be prepared that this can lead to unexpected results. I think that the best approach is to use just record with string values and maybe I would enforce it in the furture...
+As stated above current API doesn't prevent you from passing any record to the logger, but be prepared that this can lead to unexpected results. I think that the best approach is to use just flat records with string values.
 
 When you start inspecting journald messages json structure:
 
