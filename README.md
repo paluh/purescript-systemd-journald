@@ -84,10 +84,10 @@ you would get output like this (truncated):
     }
   ```
 
-As you can see nested records are flattened and __not all__ custom fields are present in the log - there is no related field for ```value: Empty```. I'm not sure what is exact pattern so if you find any additional interesting examples please let me know.
+As you can see nested records are flattened and __not all__ custom fields are present in the log - there is no related field for ```value: Empty```. I'm not sure what is exact pattern of this behavior so if you find any additional interesting examples please let me know.
 
 
-### Native API
+### Native APIs
 
 Native journald API is described here:
 
