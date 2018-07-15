@@ -30,11 +30,11 @@ When you start inspecting journald messages json structure:
 and run example from `tests/Main.purs`:
 
    ```purescript
-    import Node.Systemd.Journald (journald, debug, alert, SYSTEMD)
+    import Node.Systemd.Journald (journald, debug, alert)
 
     data Custom = Empty | NonEmpty Int
 
-    main :: forall e. Eff (systemd ∷ SYSTEMD | e) Unit
+    main :: Effect Unit
     main = do
       logger ← journald { syslog_identifier: "purescript-systemd-journald-tests"  }
       let
