@@ -1,13 +1,13 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Eff (Eff)
+import Effect (Effect)
 
-import Node.Systemd.Journald (journald, debug, SYSTEMD)
+import Node.Systemd.Journald (journald, debug)
 
 data Custom = Empty | NonEmpty Int
 
-main :: forall e. Eff (systemd ∷ SYSTEMD | e) Unit
+main :: Effect Unit
 main = do
   logger ← journald { syslog_identifier: "purescript-systemd-journald-tests"  }
   let

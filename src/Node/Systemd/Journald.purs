@@ -9,20 +9,17 @@ module Node.Systemd.Journald
   , Journald
   , notice
   , warning
-  , SYSTEMD
   ) where
 
-import Control.Monad.Eff (Eff, kind Effect)
-import Control.Monad.Eff.Uncurried (EffFn3, runEffFn3, EffFn1, runEffFn1)
+import Effect (Effect)
+import Effect.Uncurried (EffectFn3, runEffectFn3, EffectFn1, runEffectFn1)
 import Prelude (Unit)
 
 foreign import data Journald ∷ Type
-foreign import data SYSTEMD ∷ Effect
+foreign import journaldImpl ∷ ∀ a. EffectFn1 (Record a) Journald
 
-foreign import journaldImpl ∷ ∀ a eff. EffFn1 (systemd ∷ SYSTEMD| eff) (Record a) Journald
-
-journald ∷ forall eff a. Record a -> Eff (systemd :: SYSTEMD | eff) Journald
-journald = runEffFn1 journaldImpl
+journald ∷ forall a. Record a → Effect Journald
+journald = runEffectFn1 journaldImpl
 
 -- | Journald log levels:
 -- |
@@ -35,36 +32,35 @@ journald = runEffFn1 journaldImpl
 -- | INFO     - informational
 -- | DEBUG    - debug-level messages
 
-foreign import emergImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import alertImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import critImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import errImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import warningImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import noticeImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import infoImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
-foreign import debugImpl ∷ ∀ a eff. EffFn3 (systemd :: SYSTEMD | eff) Journald String (Record a) Unit
+foreign import emergImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import alertImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import critImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import errImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import warningImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import noticeImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import infoImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import debugImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
 
-emerg ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-emerg = runEffFn3 emergImpl
+emerg ∷ ∀ a. Journald → String → Record a → Effect Unit
+emerg = runEffectFn3 emergImpl
 
-alert ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-alert = runEffFn3 alertImpl
+alert ∷ ∀ a. Journald → String → Record a → Effect Unit
+alert = runEffectFn3 alertImpl
 
-crit ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-crit = runEffFn3 critImpl
+crit ∷ ∀ a. Journald → String → Record a → Effect Unit
+crit = runEffectFn3 critImpl
 
-err ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-err = runEffFn3 errImpl
+err ∷ ∀ a. Journald → String → Record a → Effect Unit
+err = runEffectFn3 errImpl
 
-warning ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-warning = runEffFn3 warningImpl
+warning ∷ ∀ a. Journald → String → Record a → Effect Unit
+warning = runEffectFn3 warningImpl
 
-notice ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-notice = runEffFn3 noticeImpl
+notice ∷ ∀ a. Journald → String → Record a → Effect Unit
+notice = runEffectFn3 noticeImpl
 
-info ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-info = runEffFn3 infoImpl
+info ∷ ∀ a. Journald → String → Record a → Effect Unit
+info = runEffectFn3 infoImpl
 
-debug ∷ forall eff a. Journald -> String -> Record a -> Eff (systemd :: SYSTEMD | eff) Unit
-debug = runEffFn3 debugImpl
-
+debug ∷ ∀ a. Journald → String → Record a → Effect Unit
+debug = runEffectFn3 debugImpl
