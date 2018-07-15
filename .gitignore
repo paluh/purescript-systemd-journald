@@ -1,0 +1,6 @@
+.psci_modules/
+bower_components/
+node_modules
+output
+.psc-ide-port
+.psc-package/
