@@ -9,11 +9,9 @@
   "devDependencies": {
     "eslint": "^4.4.1",
     "pulp": "^11.0.2",
-    "purescript": "^0.11.6",
-    "purescript-psa": "^0.5.1",
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "systemd-journald": "^1.4.0"
+    "systemd-journald": "^1.5.1"
   }
 }
