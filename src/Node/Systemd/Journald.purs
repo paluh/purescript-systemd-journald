@@ -15,10 +15,10 @@ import Effect (Effect)
 import Effect.Uncurried (EffectFn3, runEffectFn3, EffectFn1, runEffectFn1)
 import Prelude (Unit)
 
-foreign import data Journald ∷ Type
-foreign import journaldImpl ∷ ∀ a. EffectFn1 (Record a) Journald
+foreign import data Journald :: Type
+foreign import journaldImpl :: forall a. EffectFn1 (Record a) Journald
 
-journald ∷ forall a. Record a → Effect Journald
+journald :: forall a. Record a -> Effect Journald
 journald = runEffectFn1 journaldImpl
 
 -- | Journald log levels:
@@ -32,35 +32,35 @@ journald = runEffectFn1 journaldImpl
 -- | INFO     - informational
 -- | DEBUG    - debug-level messages
 
-foreign import emergImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import alertImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import critImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import errImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import warningImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import noticeImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import infoImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
-foreign import debugImpl ∷ ∀ a. EffectFn3 Journald String (Record a) Unit
+foreign import emergImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import alertImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import critImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import errImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import warningImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import noticeImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import infoImpl :: forall a. EffectFn3 Journald String (Record a) Unit
+foreign import debugImpl :: forall a. EffectFn3 Journald String (Record a) Unit
 
-emerg ∷ ∀ a. Journald → String → Record a → Effect Unit
+emerg :: forall a. Journald -> String -> Record a -> Effect Unit
 emerg = runEffectFn3 emergImpl
 
-alert ∷ ∀ a. Journald → String → Record a → Effect Unit
+alert :: forall a. Journald -> String -> Record a -> Effect Unit
 alert = runEffectFn3 alertImpl
 
-crit ∷ ∀ a. Journald → String → Record a → Effect Unit
+crit :: forall a. Journald -> String -> Record a -> Effect Unit
 crit = runEffectFn3 critImpl
 
-err ∷ ∀ a. Journald → String → Record a → Effect Unit
+err :: forall a. Journald -> String -> Record a -> Effect Unit
 err = runEffectFn3 errImpl
 
-warning ∷ ∀ a. Journald → String → Record a → Effect Unit
+warning :: forall a. Journald -> String -> Record a -> Effect Unit
 warning = runEffectFn3 warningImpl
 
-notice ∷ ∀ a. Journald → String → Record a → Effect Unit
+notice :: forall a. Journald -> String -> Record a -> Effect Unit
 notice = runEffectFn3 noticeImpl
 
-info ∷ ∀ a. Journald → String → Record a → Effect Unit
+info :: forall a. Journald -> String -> Record a -> Effect Unit
 info = runEffectFn3 infoImpl
 
-debug ∷ ∀ a. Journald → String → Record a → Effect Unit
+debug :: forall a. Journald -> String -> Record a -> Effect Unit
 debug = runEffectFn3 debugImpl

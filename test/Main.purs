@@ -10,14 +10,14 @@ data Custom
 
 main :: Effect Unit
 main = do
-  logger ← journald { syslog_identifier: "purescript-systemd-journald-tests" }
+  logger <- journald { syslog_identifier: "purescript-systemd-journald-tests" }
   let
     fields =
       { _ignored: "top"
       , something:
           { how: "how"
           , would: 888
-          , journald: \_ → "some unicode: λ"
+          , journald: \_ -> "some unicode: λ"
           , store: "store"
           , these: NonEmpty 8
           , values: Empty
