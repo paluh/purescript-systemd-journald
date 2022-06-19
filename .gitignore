@@ -4,3 +4,4 @@ node_modules
 output
 .psc-ide-port
 .psc-package/
+.spago
